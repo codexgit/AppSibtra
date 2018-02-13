@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+
+   <head>
+      <script type="text/javascript" src="../js/index.js"></script>
+      <script type="text/javascript">
+        //borrar_db();
+        //crearTablas();
+        //baseDeDatos();	
+        
+        //nueva_encuesta();
+        //recuperar();
+      </script>
+		
+   </head>
+	
+   <body>
+      <div id="status" ></div>
+      <!--<input type="text" id="id" name="id"><br/>-->
+      
+      <h3>Encuesta Educacion</h3><br/>
+      <div>Usted o su grupo familiar posee algunos de estos subsidios<br/>
+           <input type="checkbox" id="educacion_1" name="educacion" value="1">
+           <label for="educacion_1">Analfabeto</label><br/>
+           <input type="checkbox" id="educacion_2" name="educacion" value="2">
+           <label for="educacion_2">Alfabetismo informal</label><br/>
+           <input type="checkbox" id="educacion_3" name="educacion" value="3">
+           <label for="educacion_3">Básica Incompleta</label><br/>
+           <input type="checkbox" id="educacion_4" name="educacion" value="4">
+           <label for="educacion_4">Básica Completa</label><br/>
+           <input type="checkbox" id="educacion_5" name="educacion" value="5">
+           <label for="educacion_5">Media Incompleta (Científico Humanista)</label><br/>
+           <input type="checkbox" id="educacion_6" name="educacion" value="6">
+           <label for="educacion_6">Media Completa (Científico Humanista)</label><br/>
+           <input type="checkbox" id="educacion_7" name="educacion" value="7">
+           <label for="educacion_7">Liceo Técnico Incompleto</label><br/>
+           <input type="checkbox" id="educacion_8" name="educacion" value="8">
+           <label for="educacion_8">Liceo Técnico Completo</label><br/>
+           <input type="checkbox" id="educacion_9" name="educacion" value="9">
+           <label for="educacion_9">Centro de Formación Técnica incompleto</label><br/>
+           <input type="checkbox" id="educacion_10" name="educacion" value="10">
+           <label for="educacion_10">Centro de Formación Técnica Completo</label><br/>
+           <input type="checkbox" id="educacion_11" name="educacion" value="11">
+           <label for="educacion_11">Instituto Profesional Incompleto</label><br/>
+           <input type="checkbox" id="educacion_12" name="educacion" value="12">
+           <label for="educacion_12">Instituto Profesional Completo</label><br/>
+           <input type="checkbox" id="educacion_13" name="educacion" value="13">
+           <label for="educacion_13">Universidad Incompleta</label><br/>
+           <input type="checkbox" id="educacion_14" name="educacion" value="14">
+           <label for="educacion_14">Universidad Completa</label><br/>
+           <input type="checkbox" id="educacion_15" name="educacion" value="15">
+           <label for="educacion_15">Post Grado Incompleto</label><br/>
+           <input type="checkbox" id="educacion_16" name="educacion" value="16">
+           <label for="educacion_16">Post Grado Completo</label><br/>
+           <input type="checkbox" id="educacion_17" name="educacion" value="17">
+           <label for="educacion_17">Especialidades Fuerzas Armadas</label><br/>
+      </div>
+      <div>Tipo de Establecimiento<br/>
+           <input type="radio" id="Público" name="edu_tipo_est" value="1">
+           <label for="Público">Público</label>
+           <input type="radio" id="Particular" name="edu_tipo_est" value="2">
+           <label for="Particular">Particular</label>
+           <input type="radio" id="Subvencionado" name="edu_tipo_est" value="2">
+           <label for="Subvencionado">Subvencionado</label>
+       </div><br/>
+       <div>Tipo de Establecimiento<br/>
+           <input type="radio" id="Público" name="edu_tipo_est" value="1">
+           <label for="Público">Público</label>
+           <input type="radio" id="Particular" name="edu_tipo_est" value="2">
+           <label for="Particular">Particular</label>
+           <input type="radio" id="Subvencionado" name="edu_tipo_est" value="2">
+           <label for="Subvencionado">Subvencionado</label>
+       </div><br/>
+     
+      
+      <input type="text" id="edu_ult_curso" name="edu_ult_curso" placeholder="char"><br/>
+      <input type="text" id="edu_anio_egreso" name="edu_anio_egreso" placeholder="char"><br/>
+      <input type="text" id="edu_estudiando" name="edu_estudiando" placeholder="char"><br/>
+      <input type="text" id="edu_becas" name="edu_becas" placeholder="char"><br/>
+      <input type="button" onclick="guardar_encuesta_educacion()" value="Guardar y seguir">  
+   </body>
+	
+</html>

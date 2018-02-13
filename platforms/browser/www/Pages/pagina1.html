@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+   <head>
+      <script type="text/javascript" src="../js/index.js"></script>
+      <script type="text/javascript">
+        //borrar_db();
+        //crearTablas();
+        //baseDeDatos();	
+        
+        //nueva_encuesta();
+        //recuperar();
+      </script>
+		
+   </head>
+	
+   <body>
+      <div id="status" ></div>
+      <!--<input type="text" id="id" name="id"><br/>-->
+     
+       <h3>Encuesta</h3><br/>
+      <input type="text" id="filial_empresa_id" name="filial_empresa_id" placeholder=""><br/>
+      <input type="text" id="enc_codigo" name="enc_codigo" placeholder=""><br/>
+      <div>RUT </div>
+      <input type="text" id="enc_run" name="enc_run" placeholder="">
+      <label>-</label>
+      <input type="text" id="enc_dv" name="enc_dv" placeholder="" size="1">
+      <div>Nombres </div>
+      <input type="text" id="enc_nombres" name="enc_nombres" placeholder="Juan José"><br/>
+      <div>Apellido Paterno </div>
+      <input type="text" id="enc_apellido_p" name="enc_apellido_p" placeholder="Rojas"><br/>
+      <div>Apellido Materno </div>
+      <input type="text" id="enc_apellido_m" name="enc_apellido_m" placeholder="Machuca"><br/>
+      <input type="text" id="comuna_id" name="comuna_id" placeholder="int"><br/>
+      <input type="text" id="usuario_id" name="usuario_id" placeholder="int"><br/>
+      <input type="text" id="enc_fecha" name="enc_fecha" placeholder="int"><br/>
+      <input type="text" id="enc_estado" name="enc_estado" placeholder="tinyint"><br/>
+      <input type="button" onclick="guardar_encuesta()" value="Guardar y seguir">
+   </body>
+	
+</html>

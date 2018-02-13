@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+   <head>
+      <script type="text/javascript" src="../js/index.js"></script>
+      <script type="text/javascript">
+        //borrar_db();
+        //crearTablas();
+       // baseDeDatos();	
+        
+        //nueva_encuesta();
+        //recuperar();
+      </script>
+		
+   </head>
+	
+   <body>
+      <div id="status" ></div>
+      <!--<input type="text" id="id" name="id"><br/>-->
+      
+      <h3>Encuesta Familia</h3><br/>
+      <div>Rut</div>
+      <input type="text" id="fam_run" name="fam_run" placeholder="">
+      <label>-</label> <input type="text" id="fam_dv" name="fam_dv" placeholder="" size="1"><br/><br/>
+      <div>Nombres</div>
+      <input type="text" id="fam_nombres" name="fam_nombres" placeholder=""><br/><br/>
+      <div>Apellido Paterno</div>
+      <input type="text" id="fam_apellido_p" name="fam_apellido_p" placeholder=""><br/><br/>
+      <div>Apellido Materno</div>
+      <input type="text" id="fam_apellido_m" name="fam_apellido_m" placeholder=""><br/><br/>
+      <div>Fecha de nacimiento</div>
+      <input type="text" id="fam_fec_nacimiento" name="fam_fec_nacimiento" placeholder=""><br/><br/>
+      <div>Nacionalidad Chilena<br/>
+           <input type="radio" id="fam_chileno" name="nacionalidad_fam" value="1">
+           <label for="fam_chileno">Si</label><br/>
+           <input type="radio" id="fam_no_chileno" name="nacionalidad_fam" value="2">
+           <label for="fam_no_chileno">No</label><br/>
+       </div><br/>
+       <div>Genero<br/>
+           <input type="radio" id="fam_M" name="fam_genero" value="1">
+           <label for="fam_M">Masculino</label>
+           <input type="radio" id="fam_F" name="fam_genero" value="2">
+           <label for="fam_F">Femenino</label>
+       </div><br/>
+      <input type="button" onclick="guardar_encuesta_familia()" value="Guardar y seguir"> 
+   </body>
+	
+</html>
