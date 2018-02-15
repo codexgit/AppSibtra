@@ -2,12 +2,11 @@
 <html>
 
    <head>
-      <script type="text/javascript" src="js/index.js"></script>
-      <script type="text/javascript" src="js/page-manager.js"></script>
+      <script type="text/javascript" src="../js/index.js"></script>
       <script type="text/javascript">
         //borrar_db();
         //crearTablas();
-        //baseDeDatos();
+        baseDeDatos();
         //id_ultimo();
         
         //nueva_encuesta();
@@ -17,9 +16,9 @@
    </head>
 	
    <body>
-      <div id="status" >Status Message</div>
+      <div id="status" >Listado de familiares</div>
       <!--<input type="text" id="id" name="id"><br/>-->
-      <input type="button" onclick="begin()" value="Agregar familiar"><br/>
+      <input type="button" onclick="agregar_familiar()" value="Agregar familiar"><br/>
       <input type="button" onclick="volver_inicio()" value="Finalizar encuesta"><br/>
       
       <!--<a href="Pages/pagina1.html">Siguiente</a>-->

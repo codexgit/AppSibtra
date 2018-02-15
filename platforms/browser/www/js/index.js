@@ -54,23 +54,23 @@ var app = {
     
 };
 var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
-var id_encuesta;
+var id_a;
 
 function baseDeDatos(){
      
          var msg, msg2;	
 
          db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM encuesta', [], function (tx, results) {
+            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_id='+localStorage.getItem('ultimo_registrado').toString(), [], function (tx, results) {
                var len = results.rows.length, i;
-              // msg = "<p>Found rows: " + len + "</p>";
-               //document.querySelector('#status').innerHTML +=  msg;
+               msg = "<p>Found rows: " + len + "</p>";
+               document.querySelector('#status').innerHTML +=  msg;
 					
                for (i = 0; i < len; i++){
-                  //msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
-                  msg2 = "<p><b>" + results.rows.item(i).encuesta_id + "</b></p>";
+                  msg = "<p><b>" + results.rows.item(i).fam_nombres + "</p>";
+                  msg2 = "<p><b>  " + results.rows.item(i).fam_apellido_p + "</b></p>";
                   //alert(results.rows.item(i).log);
-                  //document.querySelector('#status').innerHTML +=  msg;
+                  document.querySelector('#status').innerHTML +=  msg;
                   document.querySelector('#status').innerHTML +=  msg2;
                }
             }, null);
@@ -110,13 +110,14 @@ function guardar_logs(){
 
 function crear_encuesta(){
     db.transaction(function (tx) {
-        tx.executeSql('INSERT INTO encuesta(filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
+    var i=tx.executeSql('INSERT INTO encuesta(filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
         ,['','','','','','','','','','','']);
+        
     });         
 }
 function guardar_encuesta(){
     
-    id_ultimo('SELECT * FROM encuesta;',function (id){
+    //id_ultimo('SELECT * FROM encuesta;',function (id){
         db.transaction(function (tx) {
         var filial_empresa_id=document.getElementById('filial_empresa_id').value;
         var enc_codigo=document.getElementById('enc_codigo').value;
@@ -131,11 +132,12 @@ function guardar_encuesta(){
         var enc_estado=document.getElementById('enc_estado').value;
         //alert(id);
         tx.executeSql('UPDATE encuesta SET filial_empresa_id=?,enc_codigo=?,enc_run=?,enc_dv=?,enc_nombres=?,enc_apellido_p=?,enc_apellido_m=?,comuna_id=?,usuario_id=?,enc_fecha=?,enc_estado=? WHERE encuesta_id=?',
-        [filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado,id]);
+        [filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado,localStorage.getItem('ultimo_registrado')]);
         });
-    });
+    //});
     location.href="../Pages/pagina2.html";
 }
+
 function crear_encuesta_trabajador(id_u){
     
     db.transaction(function (tx) {
@@ -144,7 +146,7 @@ function crear_encuesta_trabajador(id_u){
     }); 
 }
 function guardar_encuesta_trabajador(){
-    id_ultimo('SELECT * FROM encuesta;',function (id){
+    //id_ultimo('SELECT * FROM encuesta;',function (id){
         db.transaction(function (tx) {
         var trab_dir_calle=document.getElementById('trab_dir_calle').value;
         var trab_dir_numero=document.getElementById('trab_dir_numero').value;
@@ -161,10 +163,10 @@ function guardar_encuesta_trabajador(){
         var trab_prev_salud_d=document.getElementById('trab_prev_salud_d').value;
         var trab_prev_social=document.getElementById('trab_prev_social').value;
         tx.executeSql('UPDATE encuesta_trabajador SET trab_dir_calle=?,trab_dir_numero=?,trab_dir_sector=?,trab_tel_fijo=?,trab_tel_movil=?,trab_fec_nacimiento=?,trab_genero=?,trab_jefe_familia=?,trab_ant_indigenas=?,trab_est_civil=?,trab_nacionalidad=?,trab_prev_salud=?,trab_prev_salud_d=?,trab_prev_social=? WHERE encuesta_id=?'
-        ,[trab_dir_calle,trab_dir_numero,trab_dir_sector,trab_tel_fijo,trab_tel_movil,trab_fec_nacimiento,trab_genero,trab_jefe_familia,trab_ant_indigenas,trab_est_civil,trab_nacionalidad,trab_prev_salud,trab_prev_salud_d,trab_prev_social,id]);
+        ,[trab_dir_calle,trab_dir_numero,trab_dir_sector,trab_tel_fijo,trab_tel_movil,trab_fec_nacimiento,trab_genero,trab_jefe_familia,trab_ant_indigenas,trab_est_civil,trab_nacionalidad,trab_prev_salud,trab_prev_salud_d,trab_prev_social,localStorage.getItem('ultimo_registrado')]);
         //alert('se guardo: '+trab_dir_calle);
         }); 
-    }); 
+    //}); 
     location.href="../Pages/pagina3.html";
 }
 
@@ -175,7 +177,7 @@ function crear_encuesta_educacion(id_u){
     });         
 }
 function guardar_encuesta_educacion(){
-    id_ultimo('SELECT * FROM encuesta;',function (id){
+    //id_ultimo('SELECT * FROM encuesta;',function (id){
         db.transaction(function (tx) {
         var edu_nivel_esc=capturar("educacion");  //document.getElementById('edu_nivel_esc').value;
         var edu_tipo_est=capturar("edu_tipo_est");  //document.getElementById('edu_tipo_est').value;
@@ -184,10 +186,10 @@ function guardar_encuesta_educacion(){
         var edu_estudiando=capturar("edu_estudiando"); //document.getElementById('edu_estudiando').value;
         var edu_becas=capturar_checkbox("edu_becas");  //document.getElementById('edu_becas').value;
         tx.executeSql('UPDATE encuesta_educacion SET edu_nivel_esc=?,edu_tipo_est=?,edu_ult_curso=?,edu_anio_egreso=?,edu_estudiando=?,edu_becas=? WHERE encuesta_id=?'
-        ,[edu_nivel_esc,edu_tipo_est,edu_ult_curso,edu_anio_egreso,edu_estudiando,edu_becas,id]);
+        ,[edu_nivel_esc,edu_tipo_est,edu_ult_curso,edu_anio_egreso,edu_estudiando,edu_becas,localStorage.getItem('ultimo_registrado')]);
          //alert('se guardo: '+encuesta_id);
         });  
-    }); 
+    //}); 
     location.href="../Pages/pagina4.html";
 }
 
@@ -198,7 +200,7 @@ function crear_encuesta_salud(id_u){
     });         
 }
 function guardar_encuesta_salud(){
-    id_ultimo('SELECT * FROM encuesta;',function (id){
+    //id_ultimo('SELECT * FROM encuesta;',function (id){
         db.transaction(function (tx) {
         var sad_cont_menores=capturar("n_control"); //document.getElementById('sad_cont_menores').value;
         var sad_cons_drogas=capturar("drogas"); //document.getElementById('sad_cons_drogas').value;
@@ -207,10 +209,10 @@ function guardar_encuesta_salud(){
         var sad_usa_prevision=capturar("usa_prev"); //document.getElementById('sad_usa_prevision').value;
         var sad_cond_permanente=capturar_checkbox("cronico"); //document.getElementById('sad_cond_permanente').value;
         tx.executeSql('UPDATE encuesta_salud SET sad_cont_menores=?,sad_cons_drogas=?,sad_cons_drogas_d=?,sad_pat_ges=?,sad_usa_prevision=?,sad_cond_permanente=? WHERE encuesta_id=?'
-        ,[sad_cont_menores,sad_cons_drogas,sad_cons_drogas_d,sad_pat_ges,sad_usa_prevision,sad_cond_permanente,id]);
+        ,[sad_cont_menores,sad_cons_drogas,sad_cons_drogas_d,sad_pat_ges,sad_usa_prevision,sad_cond_permanente,localStorage.getItem('ultimo_registrado')]);
         // alert('se guardo: '+encuesta_id);
         });
-    });
+    //});
     location.href="../Pages/pagina5.html";
 }
 
@@ -221,7 +223,7 @@ function crear_encuesta_familia(id_u){
     });         
 }
 function guardar_encuesta_familia(){
-    id_ultimo('SELECT * FROM encuesta;',function (id){
+     id_ultimo_familiar('SELECT * FROM encuesta_familia;',function (id_familiar){
         db.transaction(function (tx) {
         var fam_run=document.getElementById('fam_run').value;
         var fam_dv=document.getElementById('fam_dv').value;
@@ -231,9 +233,9 @@ function guardar_encuesta_familia(){
         var fam_fec_nacimiento=document.getElementById('fam_fec_nacimiento').value;
         var fam_genero=capturar("fam_genero"); //document.getElementById('fam_genero').value;
         var fam_nac_chilena=capturar("nacionalidad_fam"); //document.getElementById('fam_nac_chilena').value;
-        tx.executeSql('UPDATE encuesta_familia SET fam_run=?,fam_dv=?,fam_nombres=?,fam_apellido_p=?,fam_apellido_m=?,fam_fec_nacimiento=?,fam_genero=?,fam_nac_chilena=? WHERE encuesta_id=?'
-        ,[fam_run,fam_dv,fam_nombres,fam_apellido_p,fam_apellido_m,fam_fec_nacimiento,fam_genero,fam_nac_chilena,id]);
-         //alert('se guardo: '+encuesta_id);
+        tx.executeSql('UPDATE encuesta_familia SET fam_run=?,fam_dv=?,fam_nombres=?,fam_apellido_p=?,fam_apellido_m=?,fam_fec_nacimiento=?,fam_genero=?,fam_nac_chilena=? WHERE encuesta_familia_id=?'
+        ,[fam_run,fam_dv,fam_nombres,fam_apellido_p,fam_apellido_m,fam_fec_nacimiento,fam_genero,fam_nac_chilena,id_familiar]);
+         //alert(id_familiar);
         }); 
     });
     location.href="../Pages/pagina7.html";
@@ -246,7 +248,7 @@ function crear_encuesta_vivienda(id_u){
     });         
 }
 function guardar_encuesta_vivienda(){
-    id_ultimo('SELECT * FROM encuesta;',function (id){
+    //id_ultimo('SELECT * FROM encuesta;',function (id){
         db.transaction(function (tx) {
         var viv_tenencia=capturar("viv_tenencia"); //document.getElementById('viv_tenencia').value;
         var viv_sitio=capturar("sit_tenencia"); //document.getElementById('viv_sitio').value;
@@ -266,11 +268,11 @@ function guardar_encuesta_vivienda(){
         var viv_ben_subsidio=capturar("benef_sub"); //document.getElementById('viv_ben_subsidio').value;
         var viv_otro_subsidio=capturar_checkbox("bonos"); //document.getElementById('viv_otro_subsidio').value;
         tx.executeSql('UPDATE encuesta_vivienda SET viv_tenencia=?,viv_sitio=?,viv_post_subsidio=?,viv_libreta=?,viv_libreta_anio=?,viv_monto_ahorro=?,viv_fam_ocupante=?,viv_num_personas=?,viv_num_dormitorios=?,viv_prov_agua=?,viv_sub_agua=?,viv_ener_electrica=?,viv_elim_excretas=?,viv_reg_hogares=?,viv_tramo_grupo=?,viv_ben_subsidio=?,viv_otro_subsidio=? WHERE encuesta_id=?'
-        ,[viv_tenencia,viv_sitio,viv_post_subsidio,viv_libreta,viv_libreta_anio,viv_monto_ahorro,viv_fam_ocupante,viv_num_personas,viv_num_dormitorios,viv_prov_agua,viv_sub_agua,viv_ener_electrica,viv_elim_excretas,viv_reg_hogares,viv_tramo_grupo,viv_ben_subsidio,viv_otro_subsidio,id]);
+        ,[viv_tenencia,viv_sitio,viv_post_subsidio,viv_libreta,viv_libreta_anio,viv_monto_ahorro,viv_fam_ocupante,viv_num_personas,viv_num_dormitorios,viv_prov_agua,viv_sub_agua,viv_ener_electrica,viv_elim_excretas,viv_reg_hogares,viv_tramo_grupo,viv_ben_subsidio,viv_otro_subsidio,localStorage.getItem('ultimo_registrado')]);
         // alert('se guardo: '+encuesta_id);
         }); 
-    }); 
-    location.href="../Pages/pagina6.html";
+    //}); 
+    location.href="../Pages/pagina5ymedio.html";
 }
 
 function crear_familia_datos(id_u){
@@ -281,7 +283,7 @@ function crear_familia_datos(id_u){
     });         
 }
 function guardar_familia_datos(){
-    id_ultimo('SELECT * FROM encuesta_familia;',function (id){
+    //id_ultimo('SELECT * FROM encuesta_familia;',function (id_familiar){
     db.transaction(function (tx) { 
         var fam_jefe_familia=capturar("fam_jefe_familia"); //document.getElementById('fam_jefe_familia').value;
         var fam_es_carga=capturar("fam_es_carga"); //document.getElementById('fam_es_carga').value;
@@ -322,30 +324,49 @@ function guardar_familia_datos(){
         var fam_otros_mes2=document.getElementById('fam_otros_mes2').value;
         var fam_otros_mes3=document.getElementById('fam_otros_mes3').value;
         tx.executeSql('UPDATE familia_datos SET fam_jefe_familia=?,fam_es_carga=?,fam_parentezco=?,fam_ant_indigena=?,fam_padre_profesor=?,fam_cond_perm=?,fam_ges=?,fam_usa_prevsalud=?,fam_trabajando=?,fam_sit_contrato=?,fam_sit_nolaboral=?,fam_det_pension=?,fam_meses_cesante=?,fam_inicio_activ=?,fam_matriculado=?,fam_nivel_educ=?,fam_tipo_est=?,fam_ult_curso=?,fam_fin_estudios=?,fam_rindio_psu=?,fam_anio_psu=?,fam_puntaje_psu=?,fam_ult_promedio=?,fam_fin_educsup=?,fam_ibruto_mes1=?,fam_ibruto_mes2=?,fam_ibruto_mes3=?,fam_iliquido_mes1=?,fam_iliquido_mes2=?,fam_iliquido_mes3=?,fam_rec_pension=?,fam_pension_mes1=?,fam_pension_mes2=?,fam_pension_mes3=?,fam_rec_otros=?,fam_otros_mes1=?,fam_otros_mes2=?,fam_otros_mes3=? WHERE encuesta_familia_id=?'
-        ,[fam_jefe_familia,fam_es_carga,fam_parentezco,fam_ant_indigena,fam_padre_profesor,fam_cond_perm,fam_ges,fam_usa_prevsalud,fam_trabajando,fam_sit_contrato,fam_sit_nolaboral,fam_det_pension,fam_meses_cesante,fam_inicio_activ,fam_matriculado,fam_nivel_educ,fam_tipo_est,fam_ult_curso,fam_fin_estudios,fam_rindio_psu,fam_anio_psu,fam_puntaje_psu,fam_ult_promedio,fam_fin_educsup,fam_ibruto_mes1,fam_ibruto_mes2,fam_ibruto_mes3,fam_iliquido_mes1,fam_iliquido_mes2,fam_iliquido_mes3,fam_rec_pension,fam_pension_mes1,fam_pension_mes2,fam_pension_mes3,fam_rec_otros,fam_otros_mes1,fam_otros_mes2,fam_otros_mes3,id]);
-         //alert('se guardo: '+encuesta_familia_id);
+        ,[fam_jefe_familia,fam_es_carga,fam_parentezco,fam_ant_indigena,fam_padre_profesor,fam_cond_perm,fam_ges,fam_usa_prevsalud,fam_trabajando,fam_sit_contrato,fam_sit_nolaboral,fam_det_pension,fam_meses_cesante,fam_inicio_activ,fam_matriculado,fam_nivel_educ,fam_tipo_est,fam_ult_curso,fam_fin_estudios,fam_rindio_psu,fam_anio_psu,fam_puntaje_psu,fam_ult_promedio,fam_fin_educsup,fam_ibruto_mes1,fam_ibruto_mes2,fam_ibruto_mes3,fam_iliquido_mes1,fam_iliquido_mes2,fam_iliquido_mes3,fam_rec_pension,fam_pension_mes1,fam_pension_mes2,fam_pension_mes3,fam_rec_otros,fam_otros_mes1,fam_otros_mes2,fam_otros_mes3,localStorage.getItem('ultimo_familiar')]);
+       alert(localStorage.getItem('ultimo_familiar'));
         });
-    });
+   // });
     //location.href="../index.html";
 }
 
+function guardar_seguir(){
+    guardar_familia_datos();
+    location.href="../Pages/pagina5ymedio.html";
+}
+function guardar_finalizar(){
+    guardar_familia_datos();
+    location.href="../index.html";
+}
+
 function nueva_encuesta(){
-    
     crear_encuesta();
-    id_ultimo('SELECT * FROM encuesta;',function (id){
+    id_ultimo('SELECT * FROM encuesta;',crear_encuestas_id);
+    //alert(localStorage.getItem('encuesta_id'));
+    window.open("Pages/pagina1.html"); 
+}
+function crear_encuestas_id(id){
     crear_encuesta_trabajador(id);
     crear_encuesta_educacion(id);
     crear_encuesta_salud(id);
     crear_encuesta_vivienda(id);
-    agregar_familiar(id);
-    });
+    localStorage.setItem('ultimo_registrado', id);
+    //alert(localStorage.getItem('ultimo_registrado'));
 }
 
-function agregar_familiar(id){
-    crear_encuesta_familia(id);
+function agregar_familiar(){
+    crear_encuesta_familia(localStorage.getItem('ultimo_registrado'));
     id_ultimo_familiar('SELECT * FROM encuesta_familia;',function (id_familiar){
+    
     crear_familia_datos(id_familiar);
+    //alert(id_familiar);
+    localStorage.setItem('ultimo_familiar',id_familiar);
+    alert(localStorage.getItem('ultimo_familiar'));
     });  
+    window.open("../Pages/pagina6.html");
+    //window.close("../Pages/pagina5ymedio.html");
+    //localStorage.clear('encuesta_id');
 }
 
 function id_ultimo(query,callBack){
@@ -355,9 +376,18 @@ function id_ultimo(query,callBack){
                var len = results.rows.length;               
                id =results.rows.item(len-1).encuesta_id; 
                callBack(id);
-            }, null);
-        });
-        //alert(id_encuesta);
+            }, null);         
+        });     
+}
+
+function id_actual(){
+    db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM encuesta;', [], function (tx, results) {
+               var len = results.rows.length;               
+               id =results.rows.item(len-1).encuesta_id; 
+               
+            }, null);       
+    });   
 }
 
 function id_ultimo_familiar(query,callBack){
@@ -367,14 +397,10 @@ function id_ultimo_familiar(query,callBack){
                var len = results.rows.length;               
                id_familiar =results.rows.item(len-1).encuesta_familia_id; 
                callBack(id_familiar);
+               //alert(id_familiar);
             }, null);
         });
         //alert(id_encuesta);
-}
-
-function begin(){
-    nueva_encuesta();
-   window.open("Pages/pagina1.html");      
 }
 
 function borrar_db(){
