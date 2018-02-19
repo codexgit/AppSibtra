@@ -19,7 +19,7 @@
       <!--<input type="text" id="id" name="id"><br/>-->
       
       <h3>Encuesta Educacion</h3><br/>
-      <div>¿Cuál es su nivel de Escolaridad?<br/>
+      <form name="nivel_edu">¿Cuál es su nivel de Escolaridad?<br/>
            <input type="radio" id="educacion_1" name="educacion" value="1">
            <label for="educacion_1">Analfabeto</label><br/>
            <input type="radio" id="educacion_2" name="educacion" value="2">
@@ -54,16 +54,16 @@
            <label for="educacion_16">Post Grado Completo</label><br/>
            <input type="radio" id="educacion_17" name="educacion" value="17">
            <label for="educacion_17">Especialidades Fuerzas Armadas</label><br/>
-      </div><br/>
-      <div>Tipo de Establecimiento<br/>
+      </form><br/>
+      <form name="t_est">Tipo de Establecimiento<br/>
            <input type="radio" id="Público" name="edu_tipo_est" value="1">
            <label for="Público">Público</label><br/>
            <input type="radio" id="Particular" name="edu_tipo_est" value="2">
            <label for="Particular">Particular</label><br/>
            <input type="radio" id="Subvencionado" name="edu_tipo_est" value="3">
            <label for="Subvencionado">Subvencionado</label>
-       </div><br/>
-       <div>Último Curso aprobado<br/>
+       </form><br/>
+       <form name="u_cur">Último Curso aprobado<br/>
            <input type="radio" id="curso_1" name="edu_ult_curso" value="1">
            <label for="curso_1">1</label>
            <input type="radio" id="curso_2" name="edu_ult_curso" value="2">
@@ -78,16 +78,16 @@
            <label for="curso_6">6</label>
            <input type="radio" id="curso_7" name="edu_ult_curso" value="7">
            <label for="curso_7">7</label>
-       </div><br/>
+       </form><br/>
       <div>Año de Egreso</div>
       <input type="text" id="edu_anio_egreso" name="edu_anio_egreso" placeholder=""><br/><br/>
-      <div>¿Actualmente está estudiando?<br/>
+      <form name="a_estu">¿Actualmente está estudiando?<br/>
            <input type="radio" id="s_estudiando" name="edu_estudiando" value="1">
            <label for="s_estudiando">Si</label><br/>
            <input type="radio" id="n_estudiando" name="edu_estudiando" value="2">
            <label for="n_estudiando">No</label><br/>
-       </div><br/>
-       <div>De estar estudiando, ¿tiene alguna de estas becas?<br/>
+       </form><br/>
+       <form name="e_becas">De estar estudiando, ¿tiene alguna de estas becas?<br/>
            <input type="checkbox" id="beca_1" name="edu_becas" value="1">
            <label for="beca_1">Beca indígena</label><br/>
            <input type="checkbox" id="beca_2" name="edu_becas" value="2">
@@ -128,7 +128,7 @@
            <label for="beca_19">Beca Interna de la Institución</label><br/>
            <input type="checkbox" id="beca_20" name="edu_becas" value="20">
            <label for="beca_20">Gratuidad en la Educación</label><br/>
-      </div><br/>
+      </form><br/>
       <input type="button" onclick="guardar_encuesta_educacion()" value="Guardar y seguir">  
    </body>
 	

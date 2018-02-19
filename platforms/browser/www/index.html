@@ -3,11 +3,10 @@
 
    <head>
       <script type="text/javascript" src="js/index.js"></script>
-      <script type="text/javascript" src="js/page-manager.js"></script>
       <script type="text/javascript">
         //borrar_db();
         crearTablas();
-        //baseDeDatos();
+        //Mostrar_registros();
         //id_ultimo();
         
         //nueva_encuesta();
@@ -18,9 +17,32 @@
 	
    <body>
       <h1>SIBTRA</h1>
+      <div id="text"></div>
+      <script type="text/javascript">
+        var div = document.getElementById("text");  
+            div.textContent = "Encuestas registradas: ";  
+        var text = div.textContent;  
+      </script>
       <!--<input type="text" id="id" name="id"><br/>-->
       <input type="button" onclick="nueva_encuesta()" value="Nueva encuesta"><br/><br/>
-      <input type="button" onclick="" value="Continuar encuesta"><br/>
+      <input type="button" onclick="Mostrar_registros()" value="Continuar encuesta"><br/>
+      <table>
+                <thead>
+                    <tr>
+                        <th scope="col">RUN Trabajador</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Comuna</th>
+                        <th scope="col">Acción</th>
+
+                    </tr>
+                </thead>
+                <tbody id="listaTrabajadores">
+
+
+                </tbody>
+            </table>
+
       
       <!--<a href="Pages/pagina1.html">Siguiente</a>-->
       

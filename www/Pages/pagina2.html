@@ -7,7 +7,7 @@
         //borrar_db();
         //crearTablas();
        // baseDeDatos();	
-        
+        llenar_encuesta_trabajador();
         //nueva_encuesta();
         //recuperar();
       </script>
@@ -30,19 +30,19 @@
       <input type="text" id="trab_tel_movil" name="trab_tel_movil" placeholder=""><br/><br/>
       <div>Fecha de nacimiento </div>
       <input type="text" id="trab_fec_nacimiento" name="trab_fec_nacimiento" placeholder="01/01/2000"><br/><br/>
-       <div>Genero<br/>
+       <form name="gen"> Genero<br/>
            <input type="radio" id="M" name="genero" value="1">
            <label for="M">Masculino</label>
            <input type="radio" id="F" name="genero" value="2">
            <label for="F">Femenino</label>
-       </div><br/>
-      <div>Jefe de familia<br/>
-           <input type="radio" id="jefe" name="jefe" value="1">
+       </form><br/>
+      <form name="jef">Jefe de familia<br/>
+           <input type="radio" id="si_jefe" name="jefe" value="1">
            <label for="jefe">Si</label><br/>
            <input type="radio" id="no_jefe" name="jefe" value="2">
            <label for="no_jefe">No</label>
-       </div><br/>
-       <div>¿Usted o sus Ascendientes tiene origen Indígena?<br/>
+       </form><br/>
+       <form name="indi">¿Usted o sus Ascendientes tiene origen Indígena?<br/>
            <input type="radio" id="no_tiene" name="indigena" value="1">
            <label for="no_tiene">No</label><br/>
            <input type="radio" id="si_yo" name="indigena" value="2">
@@ -55,8 +55,8 @@
            <label for="si_bisabu">Sí, Uno de mis bisabuelos</label><br/>
            <input type="radio" id="no_se" name="indigena" value="6">
            <label for="no_se">No se</label>
-       </div><br/>
-       <div>¿Cuál es Su estado Civil o Conyugal Actual?<br/>
+       </form><br/>
+       <form name="civil">¿Cuál es Su estado Civil o Conyugal Actual?<br/>
            <input type="radio" id="Soltero" name="e_civil" value="1">
            <label for="Soltero">Soltero</label><br/>
            <input type="radio" id="Viudo" name="e_civil" value="2">
@@ -71,21 +71,21 @@
            <label for="conviviente_civil">Conviviente Civil</label><br/>
            <input type="radio" id="separado_h" name="e_civil" value="7">
            <label for="separado_h">Separado de hecho</label>
-       </div><br/>
-       <div>¿Su Nacionalidad es Chilena?<br/>
+       </form><br/>
+       <form name="nacio">¿Su Nacionalidad es Chilena?<br/>
            <input type="radio" id="chileno" name="nacionalidad" value="1">
            <label for="chileno">Si</label><br/>
            <input type="radio" id="no_chileno" name="nacionalidad" value="2">
            <label for="no_chileno">No</label><br/>
            <input type="radio" id="con_cedula" name="nacionalidad" value="3">
            <label for="con_cedula">Tiene Cédula de Identidad Chilena</label>
-       </div><br/>
-        <div>Previsión Salud<br/>
+       </form><br/>
+        <form name="prev">Previsión Salud<br/>
            <input type="radio" id="fonasa" name="p_salud" value="1">
            <label for="fonasa">Fonasa</label><br/>
            <input type="radio" id="isapre" name="p_salud" value="2">
            <label for="isapre">Isapre</label>
-       </div><br/>
+       </form><br/>
        <div>Tramo/Nombre</div>
       <input type="text" id="trab_prev_salud_d" name="trab_prev_salud_d" placeholder="A/Banmédica"><br/><br/>
       <div>Previsión social</div>
