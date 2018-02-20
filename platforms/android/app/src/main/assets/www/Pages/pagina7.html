@@ -7,7 +7,7 @@
         //borrar_db();
         //crearTablas();
         //aseDeDatos();	
-        
+        llenar_familia_datos();
         //nueva_encuesta();
         //recuperar();
       </script>
@@ -19,19 +19,19 @@
       <!--<input type="text" id="id" name="id"><br/>-->
       
        <h3>Familia Datos</h3><br/>
-      <div>¿Es jefe(a) de familia?<br/>
+      <form name="f_jefe">¿Es jefe(a) de familia?<br/>
            <input type="radio" id="s_fam_jefe_familia" name="fam_jefe_familia" value="1">
            <label for="s_fam_jefe_familia">Si</label><br/>
            <input type="radio" id="n_fam_jefe_familia" name="fam_jefe_familia" value="2">
            <label for="n_fam_jefe_familia">No</label>
-       </div><br/>
-        <div>¿Es carga familiar del trabajador?<br/>
+      </form><br/>
+        <form name="f_carga">¿Es carga familiar del trabajador?<br/>
            <input type="radio" id="s_carga" name="fam_es_carga" value="1">
            <label for="s_carga">Si</label><br/>
            <input type="radio" id="n_carga" name="fam_es_carga" value="2">
            <label for="n_carga">No</label>
-       </div><br/>
-       <div>¿Cuál es el Parentesco con el Trabajador?<br/>
+       </form><br/>
+       <form name="f_paren">¿Cuál es el Parentesco con el Trabajador?<br/>
            <input type="radio" id="fam_1" name="fam_parentezco" value="1">
            <label for="fam_1">Hijo(a) sólo del trabajador</label><br/>
            <input type="radio" id="fam_2" name="fam_parentezco" value="2">
@@ -64,8 +64,8 @@
            <label for="fam_15">Otro Familiar</label><br/>
            <input type="radio" id="fam_16" name="fam_parentezco" value="16">
            <label for="fam_16">No Familiar</label><br/>
-        </div><br/>
-        <div>¿Usted o sus Ascendientes tiene origen Indígena?<br/>
+        </form><br/>
+        <form name="f_indige">¿Usted o sus Ascendientes tiene origen Indígena?<br/>
            <input type="radio" id="fam_no_tiene" name="fam_ant_indigena" value="1">
            <label for="fam_no_tiene">No</label><br/>
            <input type="radio" id="fam_si_yo" name="fam_ant_indigena" value="2">
@@ -78,14 +78,14 @@
            <label for="fam_si_bisabu">Sí, Uno de mis bisabuelos</label><br/>
            <input type="radio" id="fam_no_se" name="fam_ant_indigena" value="6">
            <label for="fam_no_se">No se</label>
-       </div><br/>
-       <div>¿Su madre o padre trabaja en algún establecimiento educacional establecimientos municipales, particular subvencionados o de administración delegada<br/>
+       </form><br/>
+       <form name="f_prof">¿Su madre o padre trabaja en algún establecimiento educacional establecimientos municipales, particular subvencionados o de administración delegada<br/>
            <input type="radio" id="s_fam" name="fam_padre_profesor" value="1">
            <label for="s_fam">Si</label><br/>
            <input type="radio" id="n_fam" name="fam_padre_profesor" value="2">
            <label for="n_fam">No</label>
-       </div><br/>
-       <div>¿Posee usted alguna de estas condiciones en forma permanente?<br/>
+       </form><br/>
+       <form name="f_cron">¿Posee usted alguna de estas condiciones en forma permanente?<br/>
            <input type="checkbox" id="fam_Ceguera" name="fam_cond_perm" value="1">
            <label for="fam_Ceguera">Ceguera</label><br/>
            <input type="checkbox" id="fam_Dificultad_visual" name="fam_cond_perm" value="2">
@@ -104,24 +104,24 @@
            <label for="fam_Dificultad_física">Dificultad física ( requiere ayuda para su desplazamiento)</label><br/> 
            <input type="checkbox" id="fam_No_tiene" name="fam_cond_perm" value="9">
            <label for="fam_No_tiene">No tiene</label><br/>
-      </div><br/>
+      </form><br/>
       <div>¿Usted posee alguna patología GES? Orientar con anexo</div><br/>
       <label>Señálela (s): </label> <input type="text" id="fam_ges" name="fam_ges" placeholder=""><br/><br/>
-      <div>¿Hace uso de las de las garantías de atención que ofrece su sistema previsional de salud FONASA o ISAPRE ?<br/>
+      <form name="f_pre">¿Hace uso de las de las garantías de atención que ofrece su sistema previsional de salud FONASA o ISAPRE ?<br/>
            <input type="radio" id="fam_s_prev" name="fam_usa_prevsalud" value="1">
            <label for="fam_s_prev">Si</label><br/>
            <input type="radio" id="fam_n_prev" name="fam_usa_prevsalud" value="2">
            <label for="fam_n_prev">No</label><br/>
            <input type="radio" id="fam_ns_prev" name="fam_usa_prevsalud" value="3">
            <label for="fam_ns_prev">No sabe</label><br/>
-      </div><br/>
-      <div>Si es mayor de 18 años: Actualmente, ¿está trabajando?<br/>
+      </form><br/>
+      <form name="f_mayor">Si es mayor de 18 años: Actualmente, ¿está trabajando?<br/>
            <input type="radio" id="s_fam_t" name="fam_trabajando" value="1">
            <label for="s_fam_t">Si</label>
            <input type="radio" id="n_fam_t" name="fam_trabajando" value="2">
            <label for="n_fam_t">No</label>
-       </div><br/>
-       <div>Si está trabajando, ¿Cuál es su relación Contractual?<br/>
+       </form><br/>
+       <form name="f_contra">Si está trabajando, ¿Cuál es su relación Contractual?<br/>
            <input type="radio" id="contrato_1" name="fam_sit_contrato" value="1">
            <label for="contrato_1">Contrato Indefinido</label><br/>
            <input type="radio" id="contrato_2" name="fam_sit_contrato" value="2">
@@ -138,8 +138,8 @@
            <label for="contrato_7">Trabajo Independiente</label><br/>
            <input type="radio" id="contrato_8" name="fam_sit_contrato" value="8">
            <label for="contrato_8">Sin información</label><br/> 
-       </div><br/> 
-       <div>Si NO está trabajando, ¿cuál es su situación actual?<br/>
+       </form><br/> 
+       <form name="f_lab">Si NO está trabajando, ¿cuál es su situación actual?<br/>
            <input type="radio" id="sit_1" name="fam_sit_nolaboral" value="1">
            <label for="sit_1">Dueña de Casa</label><br/>
            <input type="radio" id="sit_2" name="fam_sit_nolaboral" value="2">
@@ -150,7 +150,8 @@
            <label for="sit_4">Cesante</label><br/>
             <input type="radio" id="sit_5" name="fam_sit_nolaboral" value="5">
            <label for="sit_5">Otro</label><br/>
-       </div><br/> 
+       </form><br/> 
+       <form name="f_nlab">
        <div>Si es Dueña de Casa</div><br/>
        <div>¿Realiza alguna actividad económica de manera independiente?<br/>
            <input type="radio" id="dueña_1" name="fam_det_pension" value="1">
@@ -176,6 +177,7 @@
            <input type="radio" id="dueña_8" name="fam_det_pension" value="8">
            <label for="dueña_8">No</label>
        </div><br/>
+      
        <div>Si es Jubilado o Pensionado</div><br/>
        <div>Pensión con aporte previsional solidario de Invalidez<br/>
            <input type="radio" id="jubilado_1" name="fam_det_pension" value="9">
@@ -231,28 +233,30 @@
            <input type="radio" id="jubilado_18" name="fam_det_pension" value="26">
            <label for="jubilado_18">No</label>
        </div><br/>
-         <div>Si es Cesante</div><br/>
+       
+       <div>Si es Cesante</div><br/>
        <div>Está Inscrito en la OMIL ( Oficina de intermediación laboral del Municipio)<br/>
            <input type="radio" id="cesante_1" name="fam_det_pension" value="27">
            <label for="cesante_1">Si</label>
            <input type="radio" id="cesante_2" name="fam_det_pension" value="28">
            <label for="cesante_2">No</label>
        </div><br/>
+        </form>
        <div>Tiempo cesante en meses</div>
        <input type="text" id="fam_meses_cesante" name="fam_meses_cesante" placeholder=""><br/><br/>
-       <div>Tiene Iniciación de Actividades en el SII<br/>
+       <form name="f_sii">Tiene Iniciación de Actividades en el SII<br/>
            <input type="radio" id="s_inicio" name="fam_inicio_activ" value="1">
            <label for="s_inicio">Si</label>
            <input type="radio" id="n_inicio" name="fam_inicio_activ" value="2">
            <label for="n_inicio">No</label>
-       </div><br/>
-       <div>¿Asiste actualmente o está matriculado en algún establecimiento educacional o pre escolar?<br/>
+       </form><br/>
+       <form name="f_matri">¿Asiste actualmente o está matriculado en algún establecimiento educacional o pre escolar?<br/>
            <input type="radio" id="s_matri" name="fam_matriculado" value="1">
            <label for="s_matri">Si</label>
            <input type="radio" id="n_matri" name="fam_matriculado" value="2">
            <label for="n_matri">No</label>
-       </div><br/>
-       <div>NivelEducacional Actual<br/>
+       </form><br/>
+       <form name="f_nivel">NivelEducacional Actual<br/>
            <input type="radio" id="fam_educacion_1" name="fam_nivel_educ" value="1">
            <label for="fam_educacion_1">Educación Parvularia</label><br/>
            <input type="radio" id="fam_educacion_2" name="fam_nivel_educ" value="2">
@@ -273,8 +277,8 @@
            <label for="fam_educacion_9">Post Grado</label><br/>
            <input type="radio" id="fam_educacion_10" name="fam_nivel_educ" value="10">
            <label for="fam_educacion_10">Especialidades Fuerzas Armadas</label><br/>
-       </div><br/>
-       <div>Tipo de Establecimiento<br/>
+       </form><br/>
+       <form name="f_est">Tipo de Establecimiento<br/>
            <input type="radio" id="fam_Público" name="fam_tipo_est" value="1">
            <label for="fam_Público">Público</label><br/>
            <input type="radio" id="fam_Particular" name="fam_tipo_est" value="2">
@@ -283,8 +287,8 @@
            <label for="fam_Subvencionado">Subvencionado</label><br/>
            <input type="radio" id="fam_e_adultos" name="fam_tipo_est" value="4">
            <label for="fam_e_adultos">Educación de Adultos</label>
-       </div><br/>
-       <div>Último Curso aprobado<br/>
+       </form><br/>
+       <form name="f_ult">Último Curso aprobado<br/>
            <input type="radio" id="fam_curso_1" name="fam_ult_curso" value="1">
            <label for="fam_curso_1">1</label>
            <input type="radio" id="fam_curso_2" name="fam_ult_curso" value="2">
@@ -299,7 +303,7 @@
            <label for="fam_curso_6">6</label>
            <input type="radio" id="fam_curso_7" name="fam_ult_curso" value="7">
            <label for="fam_curso_7">7</label>
-       </div><br/>
+       </form><br/>
        <div>¿El último año calendario que estudió fue?</div>
        <input type="text" id="fam_fin_estudios" name="fam_fin_estudios" placeholder=""><br/><br/>
        <div>¿Rindió la PSU?</div>
@@ -310,7 +314,7 @@
        <input type="text" id="fam_puntaje_psu" name="fam_puntaje_psu" placeholder=""><br/><br/>
        <div>¿Su Promedio Notas último año cursado fue?</div>
        <input type="text" id="fam_ult_promedio" name="fam_ult_promedio" placeholder=""><br/><br/>
-       <div>¿Si actualmente está estudiando Educación Superior cómo Financia su carrera?<br/>
+       <form name="f_fincar">¿Si actualmente está estudiando Educación Superior cómo Financia su carrera?<br/>
            <input type="radio" id="fam_fin_1" name="fam_fin_educsup" value="1">
            <label for="fam_fin_1">Becas</label><br/>
            <input type="radio" id="fam_fin_2" name="fam_fin_educsup" value="2">
@@ -323,7 +327,7 @@
            <label for="fam_fin_5">Gratuidad en la Educación</label><br/>
            <input type="radio" id="fam_fin_6" name="fam_fin_educsup" value="6">
            <label for="fam_fin_6">Otros</label>
-       </div><br/>
+       </form><br/>
        <div>Detalle su Ingreso Bruto en los últimos 3 Meses (Mes 3= Ingreso mes anterior a la encuesta)</div>
        <label>Mes 3= $ </label> <input type="text" id="fam_ibruto_mes1" name="fam_ibruto_mes1" placeholder=""><br/>
        <label>Mes 2= $ </label> <input type="text" id="fam_ibruto_mes2" name="fam_ibruto_mes2" placeholder=""><br/>
@@ -332,22 +336,22 @@
        <label>Mes 3= $ </label> <input type="text" id="fam_iliquido_mes1" name="fam_iliquido_mes1" placeholder=""><br/>
        <label>Mes 2= $ </label> <input type="text" id="fam_iliquido_mes2" name="fam_iliquido_mes2" placeholder=""><br/>
        <label>Mes 1= $ </label> <input type="text" id="fam_iliquido_mes3" name="fam_iliquido_mes3" placeholder=""><br/><br/>
-       <div>Recibe usted Pensiones o Jubilaciones:<br/>
+       <form name="f_recibe_pen">Recibe usted Pensiones o Jubilaciones:<br/>
            <input type="radio" id="s_pen" name="fam_rec_pension" value="1">
            <label for="s_pen">Si</label>
            <input type="radio" id="n_pen" name="fam_rec_pension" value="2">
            <label for="n_pen">No</label>
-       </div><br/>
+       </form><br/>
        <div>Si la respuesta es Si ¿A cuánto Ascienden por mes?</div>
        <label>Mes 3= $ </label> <input type="text" id="fam_pension_mes1" name="fam_pension_mes1" placeholder=""><br/>
        <label>Mes 2= $ </label> <input type="text" id="fam_pension_mes2" name="fam_pension_mes2" placeholder=""><br/>
        <label>Mes 1= $ </label> <input type="text" id="fam_pension_mes3" name="fam_pension_mes3" placeholder=""><br/><br/>
-       <div>¿Tiene algún otro Ingreso económico Por concepto de SUF, Pensión de alimentos, o por trabajo independiente?<br/>
+       <form name="f_rec_otro">¿Tiene algún otro Ingreso económico Por concepto de SUF, Pensión de alimentos, o por trabajo independiente?<br/>
            <input type="radio" id="s_pen_otros" name="fam_rec_otros" value="1">
            <label for="s_pen_otros">Si</label>
            <input type="radio" id="n_pen_otros" name="fam_rec_otros" value="2">
            <label for="n_pen_otros">No</label>
-       </div><br/>
+       </form><br/>
        <div>Si la respuesta es Si ¿A cuánto Ascienden por mes?</div>
        <label>Mes 3= $ </label> <input type="text" id="fam_otros_mes1" name="fam_otros_mes1" placeholder=""><br/>
        <label>Mes 2= $ </label> <input type="text" id="fam_otros_mes2" name="fam_otros_mes2" placeholder=""><br/>

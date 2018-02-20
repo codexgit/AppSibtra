@@ -7,7 +7,7 @@
         //borrar_db();
         //crearTablas();
         //baseDeDatos();	
-        
+        llenar_encuesta_vivienda();
         //nueva_encuesta();
         //recuperar();
       </script>
@@ -19,7 +19,7 @@
       <!--<input type="text" id="id" name="id"><br/>-->
      
        <h3>Encuesta Vivienda</h3><br/>
-       <div>Tenencia de la Vivienda<br/>
+       <form name="v_ten">Tenencia de la Vivienda<br/>
            <input type="radio" id="Propietario" name="viv_tenencia" value="1">
            <label for="Propietario">Propietario</label><br/>
            <input type="radio" id="pagando_div" name="viv_tenencia" value="2">
@@ -38,8 +38,8 @@
            <label for="Sucesión">Sucesión</label><br/>
            <input type="radio" id="s_calle" name="viv_tenencia" value="9">
            <label for="s_calle">Situación de Calle</label><br/><br/>
-      </div>
-      <div>Tenencia del sitio<br/>
+      </form>
+      <form name="s_ten">Tenencia del sitio<br/>
            <input type="radio" id="s_Propietario" name="sit_tenencia" value="1">
            <label for="s_Propietario">Propietario</label><br/>
            <input type="radio" id="s_pagando_div" name="sit_tenencia" value="2">
@@ -58,8 +58,8 @@
            <label for="s_Sucesión">Sucesión</label><br/>
            <input type="radio" id="si_calle" name="sit_tenencia" value="9">
            <label for="si_calle">Situación de Calle</label><br/><br/>
-      </div>
-        <div>¿Está Postulando a Subsidio Habitacional?<br/>
+      </form>
+        <form name="p_sub">¿Está Postulando a Subsidio Habitacional?<br/>
            <input type="radio" id="s_nueva" name="p_subsidio" value="1">
            <label for="s_nueva">Sí, Vivienda Nueva o Usada</label><br/>
            <input type="radio" id="s_cons" name="p_subsidio" value="2">
@@ -74,28 +74,28 @@
            <label for="s_entorno">Si, Subsidio de Arriendo</label><br/>
            <input type="radio" id="s_no" name="p_subsidio" value="7">
            <label for="s_entorno">No</label><br/><br/>
-      </div>
-       <div>¿Tiene Libreta de ahorro para la vivienda?<br/>
+      </form>
+       <form name="t_lib">¿Tiene Libreta de ahorro para la vivienda?<br/>
            <input type="radio" id="s_libreta" name="libreta" value="1">
            <label for="s_libreta">Si</label><br/>
            <input type="radio" id="n_libreta" name="libreta" value="2">
            <label for="n_libreta">No</label><br/>
-      </div><br/>
+      </form><br/>
       <div>Señale año de apertura</div>
       <input type="text" id="viv_libreta_anio" name="viv_libreta_anio" placeholder=""><br/><br/>
       <div>¿Cuál es el monto aproximado que ha ahorrado para su Vivienda?</div>
       <label>$ </label><input type="text" id="viv_monto_ahorro" name="viv_monto_ahorro" placeholder=""><br/><br/>
-      <div>Su familia, ¿es la principal ocupante de la vivienda?<br/>
+      <form name="f_ocu">Su familia, ¿es la principal ocupante de la vivienda?<br/>
            <input type="radio" id="s_ocupante" name="ocupante" value="1">
            <label for="s_libreta">Si</label><br/>
            <input type="radio" id="n_ocupante" name="ocupante" value="2">
            <label for="n_libreta">No</label><br/>
-      </div><br/>
+      </form><br/>
        <div>Número de personas que habitan la vivienda:</div>
        <input type="text" id="viv_num_personas" name="viv_num_personas" placeholder=""><br/><br/>
        <div>Número de piezas que usan como dormitorio</div>
         <input type="text" id="viv_num_dormitorios" name="viv_num_dormitorios" placeholder=""><br/><br/>
-        <div>¿De dónde proviene el agua de la vivienda?<br/>
+        <form name="v_agua">¿De dónde proviene el agua de la vivienda?<br/>
            <input type="radio" id="publica_cm" name="agua" value="1">
            <label for="publica_cm">Red Pública Con Medidor</label><br/>
            <input type="radio" id="publica_sm" name="agua" value="2">
@@ -106,14 +106,14 @@
            <label for="noria">Agua de Pozo, vertiente o Noria</label><br/>
            <input type="radio" id="s_info" name="agua" value="5">
            <label for="s_info">Sin Información.</label><br/><br/>
-      </div>
-      <div>¿Tiene Subsidio de Agua Potable?<br/>
+      </form>
+      <form name="s_agu">¿Tiene Subsidio de Agua Potable?<br/>
            <input type="radio" id="s_sub" name="s_agua" value="1">
            <label for="s_sub">Si</label><br/>
            <input type="radio" id="n_sub" name="s_agua" value="2">
            <label for="n_sub">No</label><br/>
-      </div><br/>
-       <div>¿Cuál es el Sistema de Energía eléctrica de la vivienda?<br/>
+      </form><br/>
+       <form name="v_ene">¿Cuál es el Sistema de Energía eléctrica de la vivienda?<br/>
            <input type="radio" id="e_publica" name="energia" value="1">
            <label for="e_publica">Red pública con medidor propio</label><br/>
            <input type="radio" id="e_comp" name="energia" value="2">
@@ -128,8 +128,8 @@
            <label for="e_no">No dispone</label><br/>
            <input type="radio" id="e_sin_info" name="energia" value="7">
            <label for="e_sin_info">Sin información.</label><br/><br/>
-      </div>
-      <div>¿Cuál es el Sistema de Eliminación de excretas de la vivienda?<br/>
+      </form>
+      <form name="v_exc">¿Cuál es el Sistema de Eliminación de excretas de la vivienda?<br/>
            <input type="radio" id="Alcantarillado" name="excretas" value="1">
            <label for="Alcantarillado">Alcantarillado</label><br/>
            <input type="radio" id="Fosa_Séptica" name="excretas" value="2">
@@ -142,16 +142,16 @@
            <label for="no_dispone">No dispone</label><br/>
            <input type="radio" id="d_sin_info" name="excretas" value="7">
            <label for="d_sin_info">Sin información.</label><br/><br/>
-      </div>
-       <div>¿Se encuentra incorporado en el Registro Social de Hogares?<br/>
+      </form>
+       <form name="r_hog">¿Se encuentra incorporado en el Registro Social de Hogares?<br/>
            <input type="radio" id="s_registro" name="registro_hogares" value="1">
            <label for="s_registro">Si</label><br/>
            <input type="radio" id="n_registro" name="registro_hogares" value="2">
            <label for="n_registro">No</label><br/>
            <input type="radio" id="n_info" name="registro_hogares" value="2">
            <label for="n_info">No sabe</label><br/>
-      </div><br/>
-      <div>¿Cuál es el tramo en el que se encuentra su grupo familiar?<br/>
+      </form><br/>
+      <form name="e_enc">¿Cuál es el tramo en el que se encuentra su grupo familiar?<br/>
            <input type="radio" id="t_40" name="e_encuesta" value="1">
            <label for="t_40">Tramo del 40 0% – 40%</label><br/>
            <input type="radio" id="t_50" name="e_encuesta" value="2">
@@ -168,8 +168,8 @@
            <label for="t_100">Tramo del 100 91%-100%</label><br/>
            <input type="radio" id="t_no_sabe" name="e_encuesta" value="8">
            <label for="t_no_sabe">No conoce el tramo</label><br/><br/>
-      </div>
-      <div>¿Ha sido beneficiario de alguno de los siguientes Subsidios para la Vivienda?<br/>
+      </form>
+      <form name="v_ben">¿Ha sido beneficiario de alguno de los siguientes Subsidios para la Vivienda?<br/>
            <input type="radio" id="sub_1" name="benef_sub" value="1">
            <label for="sub_1">Subsidio Protección al Patrimonio Familiar título I (entorno)</label><br/>
            <input type="radio" id="sub_2" name="benef_sub" value="2">
@@ -188,8 +188,8 @@
            <label for="sub_8">Movilidad habitacional</label><br/>
             <input type="radio" id="sub_9" name="benef_sub" value="9">
            <label for="sub_9">No</label><br/><br/>
-      </div>
-      <div>Usted o su grupo familiar posee algunos de estos subsidios<br/>
+      </form>
+      <form name="v_bono">Usted o su grupo familiar posee algunos de estos subsidios<br/>
            <input type="checkbox" id="bono_1" name="bonos" value="1">
            <label for="bono_1">Subsidio consumo agua potable</label><br/>
            <input type="checkbox" id="bono_2" name="bonos" value="2">
@@ -212,7 +212,7 @@
            <label for="bono_10">Pensión básica solidaria de invalidez</label><br/>
            <input type="checkbox" id="bono_11" name="bonos" value="11">
            <label for="bono_11">Aporte previsional solidario de invalidez</label><br/><br/>
-      </div>
+      </form>
       <input type="button" onclick="guardar_encuesta_vivienda()" value="Guardar y seguir">
    </body>
 	

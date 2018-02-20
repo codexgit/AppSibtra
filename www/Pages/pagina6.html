@@ -8,6 +8,7 @@
         //crearTablas();
        // baseDeDatos();	
         agregar_datos_familiar();
+        llenar_encuesta_familia();
         //nueva_encuesta();
         //recuperar();
       </script>
@@ -30,18 +31,18 @@
       <input type="text" id="fam_apellido_m" name="fam_apellido_m" placeholder=""><br/><br/>
       <div>Fecha de nacimiento</div>
       <input type="text" id="fam_fec_nacimiento" name="fam_fec_nacimiento" placeholder=""><br/><br/>
-      <div>Nacionalidad Chilena<br/>
+      <form name="f_nac">Nacionalidad Chilena<br/>
            <input type="radio" id="fam_chileno" name="nacionalidad_fam" value="1">
            <label for="fam_chileno">Si</label><br/>
            <input type="radio" id="fam_no_chileno" name="nacionalidad_fam" value="2">
            <label for="fam_no_chileno">No</label><br/>
-       </div><br/>
-       <div>Genero<br/>
+       </form><br/>
+       <form name="gen">Genero<br/>
            <input type="radio" id="fam_M" name="fam_genero" value="1">
            <label for="fam_M">Masculino</label>
            <input type="radio" id="fam_F" name="fam_genero" value="2">
            <label for="fam_F">Femenino</label>
-       </div><br/>
+       </form><br/>
       <input type="button" onclick="guardar_encuesta_familia()" value="Guardar y seguir"> 
    </body>
 	

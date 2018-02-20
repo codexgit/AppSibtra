@@ -484,12 +484,22 @@ function capturar_checkbox(checkboxName) {
     return cadena;
 }
 
+function setear_checkbox(checkboxName,array) {
+      alert(array.length);
+    var checkboxes = document.getElementsByName(checkboxName);;
+    for (var i=0;i<array.length;i+2)
+    {
+      
+       // checkboxes[array[i]].checked=true;
+    }
+}
+
 function volver_inicio(){
     location.href="../index.html";
 }
 
 function llenar_encuesta(){
-    localStorage.setItem('actual', 1);
+    localStorage.setItem('actual', 2);
  
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
@@ -508,7 +518,7 @@ function llenar_encuesta(){
 } 
 
 function llenar_encuesta_trabajador(){
-    localStorage.setItem('actual', 1);
+    localStorage.setItem('actual', 2);
  
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta_trabajador WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
@@ -532,8 +542,8 @@ function llenar_encuesta_trabajador(){
 } 
 
 function llenar_encuesta_educacion(){
-    localStorage.setItem('actual', 1);
- 
+    localStorage.setItem('actual', 3);
+    var i=0;
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta_educacion WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
               document.nivel_edu.educacion.value = results.rows.item(0).edu_nivel_esc;
@@ -541,9 +551,123 @@ function llenar_encuesta_educacion(){
               document.u_cur.edu_ult_curso.value = results.rows.item(0).edu_ult_curso;
               document.getElementById('edu_anio_egreso').value = results.rows.item(0).edu_anio_egreso;
               document.a_estu.edu_estudiando.value = results.rows.item(0).edu_estudiando; 
-              document.e_becas.value = results.rows.item(0).edu_becas;
-                // edu_nivel_esc,edu_tipo_est,edu_ult_curso,edu_anio_egreso,edu_estudiando,edu_becas
+              //setear_checkbox('edu_becas',results.rows.item(0).edu_becas);
+              //document.e_becas.edu_becas.value = results.rows.item(0).edu_becas;
+              
+                
             }, null);         
         });     
 } 
+
+function llenar_encuesta_salud(){
+    localStorage.setItem('actual', 2);
+ 
+    db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM encuesta_salud WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
+              document.n_cont.n_control.value = results.rows.item(0).sad_cont_menores;
+              document.c_drog.drogas.value = results.rows.item(0).sad_cons_drogas;
+              document.getElementById('sad_cons_drogas_d').value = results.rows.item(0).sad_cons_drogas_d;
+              document.getElementById('sad_pat_ges').value = results.rows.item(0).sad_pat_ges;
+              document.u_prev.usa_prev.value = results.rows.item(0).sad_usa_prevision;
+              //document.getElementById('trab_fec_nacimiento').value = results.rows.item(0).trab_fec_nacimiento;
+                 //alert(results.rows.item(0).enc_run);
+            }, null);         
+        });     
+} 
+
+function llenar_encuesta_vivienda(){
+    localStorage.setItem('actual', 2);
+ 
+    db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM encuesta_vivienda WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
+              document.v_ten.viv_tenencia.value = results.rows.item(0).viv_tenencia;
+              document.s_ten.sit_tenencia.value = results.rows.item(0).viv_sitio;
+              document.p_sub.p_subsidio.value = results.rows.item(0).viv_post_subsidio;
+              document.t_lib.libreta.value = results.rows.item(0).viv_libreta;
+              document.getElementById('viv_libreta_anio').value = results.rows.item(0).viv_libreta_anio;
+              document.getElementById('viv_monto_ahorro').value = results.rows.item(0).viv_monto_ahorro;
+              document.f_ocu.ocupante.value = results.rows.item(0).viv_fam_ocupante;
+              document.getElementById('viv_num_personas').value = results.rows.item(0).viv_num_personas;
+              document.getElementById('viv_num_dormitorios').value = results.rows.item(0).viv_num_dormitorios;
+              document.v_agua.agua.value = results.rows.item(0).viv_prov_agua;
+              document.s_agu.s_agua.value = results.rows.item(0).viv_sub_agua;
+              document.v_ene.energia.value = results.rows.item(0).viv_ener_electrica;
+              document.v_exc.excretas.value = results.rows.item(0).viv_elim_excretas;
+              document.r_hog.registro_hogares.value = results.rows.item(0).viv_reg_hogares;
+              document.e_enc.e_encuesta.value = results.rows.item(0).viv_tramo_grupo;
+              document.v_ben.benef_sub.value = results.rows.item(0).viv_ben_subsidio;
+              //document.e_enc.e_encuesta.value = results.rows.item(0).viv_otro_subsidio;
+              //,,,,,,,,,,,,,,,,
+                 //alert(results.rows.item(0).enc_run);
+            }, null);         
+        });     
+} 
+
+function llenar_encuesta_familia(){
+    localStorage.setItem('actual', 1);
+ 
+    db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_familia_id=?',[localStorage.getItem('actual')], function (tx, results) {            
+              document.getElementById('fam_run').value = results.rows.item(0).fam_run;
+              document.getElementById('fam_dv').value = results.rows.item(0).fam_dv;
+              document.getElementById('fam_nombres').value = results.rows.item(0).fam_nombres;
+              document.getElementById('fam_apellido_p').value = results.rows.item(0).fam_apellido_p;
+              document.getElementById('fam_apellido_m').value = results.rows.item(0).fam_apellido_m; 
+              document.getElementById('fam_fec_nacimiento').value = results.rows.item(0).fam_fec_nacimiento;
+              document.f_nac.nacionalidad_fam.value = results.rows.item(0).fam_nac_chilena;
+              document.gen.fam_genero.value = results.rows.item(0).fam_genero;
+            }, null);         
+        });     
+} 
+
+function llenar_familia_datos(){
+    localStorage.setItem('actual', 1);
+ 
+    db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM familia_datos WHERE encuesta_familia_id=?',[localStorage.getItem('actual')], function (tx, results) {            
+              document.f_jefe.fam_jefe_familia.value = results.rows.item(0).fam_jefe_familia;
+              document.f_carga.fam_es_carga.value = results.rows.item(0).fam_es_carga;
+              document.f_paren.fam_parentezco.value = results.rows.item(0).fam_parentezco;
+              document.f_indige.fam_ant_indigena.value = results.rows.item(0).fam_ant_indigena;
+              document.f_prof.fam_padre_profesor.value = results.rows.item(0).fam_padre_profesor;
+              //document.f_cron.fam_cond_perm.value = results.rows.item(0).fam_cond_perm;
+              document.getElementById('fam_ges').value = results.rows.item(0).fam_ges;
+              document.f_pre.fam_usa_prevsalud.value = results.rows.item(0).fam_usa_prevsalud;
+              document.f_mayor.fam_trabajando.value = results.rows.item(0).fam_trabajando;
+              document.f_contra.fam_sit_contrato.value = results.rows.item(0).fam_sit_contrato;
+              document.f_lab.fam_sit_nolaboral.value = results.rows.item(0).fam_sit_nolaboral;
+              document.f_nlab.fam_det_pension.value = results.rows.item(0).fam_det_pension;
+              document.getElementById('fam_meses_cesante').value = results.rows.item(0).fam_meses_cesante;
+              document.f_sii.fam_inicio_activ.value = results.rows.item(0).fam_inicio_activ;
+              document.f_matri.fam_matriculado.value = results.rows.item(0).fam_matriculado;
+              document.f_nivel.fam_nivel_educ.value = results.rows.item(0).fam_nivel_educ;
+              document.f_est.fam_tipo_est.value = results.rows.item(0).fam_tipo_est;
+              document.f_ult.fam_ult_curso.value = results.rows.item(0).fam_ult_curso;
+              document.getElementById('fam_fin_estudios').value = results.rows.item(0).fam_fin_estudios;
+              document.getElementById('fam_rindio_psu').value = results.rows.item(0).fam_rindio_psu;
+              document.getElementById('fam_anio_psu').value = results.rows.item(0).fam_anio_psu;
+              document.getElementById('fam_puntaje_psu').value = results.rows.item(0).fam_puntaje_psu;
+              document.getElementById('fam_ult_promedio').value = results.rows.item(0).fam_ult_promedio;
+              document.f_fincar.fam_fin_educsup.value = results.rows.item(0).fam_fin_educsup;
+              document.getElementById('fam_ibruto_mes1').value = results.rows.item(0).fam_ibruto_mes1;
+              document.getElementById('fam_ibruto_mes2').value = results.rows.item(0).fam_ibruto_mes2;
+              document.getElementById('fam_ibruto_mes3').value = results.rows.item(0).fam_ibruto_mes3;
+              document.getElementById('fam_iliquido_mes1').value = results.rows.item(0).fam_iliquido_mes1;
+              document.getElementById('fam_iliquido_mes2').value = results.rows.item(0).fam_iliquido_mes2;
+              document.getElementById('fam_iliquido_mes3').value = results.rows.item(0).fam_iliquido_mes3;
+              document.f_recibe_pen.fam_rec_pension.value = results.rows.item(0).fam_rec_pension;
+              document.getElementById('fam_pension_mes1').value = results.rows.item(0).fam_pension_mes1;
+              document.getElementById('fam_pension_mes2').value = results.rows.item(0).fam_pension_mes2;
+              document.getElementById('fam_pension_mes3').value = results.rows.item(0).fam_pension_mes3;
+              document.f_rec_otro.fam_rec_otros.value = results.rows.item(0).fam_rec_otros;
+              document.getElementById('fam_otros_mes1').value = results.rows.item(0).fam_otros_mes1;
+              document.getElementById('fam_otros_mes2').value = results.rows.item(0).fam_otros_mes2;
+              document.getElementById('fam_otros_mes3').value = results.rows.item(0).fam_otros_mes3;
+              //document.e_enc.e_encuesta.value = results.rows.item(0).viv_otro_subsidio;
+              //,,,,,,,,,,,,,,,,
+                 //alert(results.rows.item(0).enc_run);
+            }, null);         
+        });     
+} 
+
 app.initialize();
