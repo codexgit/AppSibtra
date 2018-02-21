@@ -61,7 +61,7 @@ function Mostrar_familiares(){
          var msg, msg2;	
 
          db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_id='+localStorage.getItem('ultimo_registrado').toString(), [], function (tx, results) {
+            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_id='+localStorage.getItem('actual').toString(), [], function (tx, results) {
                var len = results.rows.length, i;
                msg = "<p>Found rows: " + len + "</p>";
                document.querySelector('#status').innerHTML +=  msg;
@@ -80,7 +80,7 @@ function Mostrar_familiares(){
 function Mostrar_registros(){
     
     db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_id='+localStorage.getItem('ultimo_registrado').toString(), [], function (tx, results) {
+            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_id='+localStorage.getItem('actual').toString(), [], function (tx, results) {
                var len = results.rows.length, i;
                for (var trabajador of results) {
                     $("#listaTrabajadores").append("<tr>");
@@ -155,7 +155,7 @@ function guardar_encuesta(){
         var enc_estado=document.getElementById('enc_estado').value;
         //alert(localStorage.getItem('ultimo_registrado'));
         tx.executeSql('UPDATE encuesta SET filial_empresa_id=?,enc_codigo=?,enc_run=?,enc_dv=?,enc_nombres=?,enc_apellido_p=?,enc_apellido_m=?,comuna_id=?,usuario_id=?,enc_fecha=?,enc_estado=? WHERE encuesta_id=?',
-        [filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado,localStorage.getItem('ultimo_registrado')]);
+        [filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado,localStorage.getItem('actual')]);
         });
     //});
     location.href="../Pages/pagina2.html";
@@ -186,7 +186,7 @@ function guardar_encuesta_trabajador(){
         var trab_prev_salud_d=document.getElementById('trab_prev_salud_d').value;
         var trab_prev_social=document.getElementById('trab_prev_social').value;
         tx.executeSql('UPDATE encuesta_trabajador SET trab_dir_calle=?,trab_dir_numero=?,trab_dir_sector=?,trab_tel_fijo=?,trab_tel_movil=?,trab_fec_nacimiento=?,trab_genero=?,trab_jefe_familia=?,trab_ant_indigenas=?,trab_est_civil=?,trab_nacionalidad=?,trab_prev_salud=?,trab_prev_salud_d=?,trab_prev_social=? WHERE encuesta_id=?'
-        ,[trab_dir_calle,trab_dir_numero,trab_dir_sector,trab_tel_fijo,trab_tel_movil,trab_fec_nacimiento,trab_genero,trab_jefe_familia,trab_ant_indigenas,trab_est_civil,trab_nacionalidad,trab_prev_salud,trab_prev_salud_d,trab_prev_social,localStorage.getItem('ultimo_registrado')]);
+        ,[trab_dir_calle,trab_dir_numero,trab_dir_sector,trab_tel_fijo,trab_tel_movil,trab_fec_nacimiento,trab_genero,trab_jefe_familia,trab_ant_indigenas,trab_est_civil,trab_nacionalidad,trab_prev_salud,trab_prev_salud_d,trab_prev_social,localStorage.getItem('actual')]);
         //alert('se guardo: '+trab_dir_calle);
         }); 
     //}); 
@@ -207,9 +207,9 @@ function guardar_encuesta_educacion(){
         var edu_ult_curso=capturar("edu_ult_curso"); //document.getElementById('edu_ult_curso').value;
         var edu_anio_egreso=document.getElementById('edu_anio_egreso').value;
         var edu_estudiando=capturar("edu_estudiando"); //document.getElementById('edu_estudiando').value;
-        var edu_becas=capturar_checkbox("edu_becas");  //document.getElementById('edu_becas').value;
+        var edu_becas=capturar_checkbox("edu_becas[]");  //document.getElementById('edu_becas').value;
         tx.executeSql('UPDATE encuesta_educacion SET edu_nivel_esc=?,edu_tipo_est=?,edu_ult_curso=?,edu_anio_egreso=?,edu_estudiando=?,edu_becas=? WHERE encuesta_id=?'
-        ,[edu_nivel_esc,edu_tipo_est,edu_ult_curso,edu_anio_egreso,edu_estudiando,edu_becas,localStorage.getItem('ultimo_registrado')]);
+        ,[edu_nivel_esc,edu_tipo_est,edu_ult_curso,edu_anio_egreso,edu_estudiando,edu_becas,localStorage.getItem('actual')]);
          //alert('se guardo: '+encuesta_id);
         });  
     //}); 
@@ -232,7 +232,7 @@ function guardar_encuesta_salud(){
         var sad_usa_prevision=capturar("usa_prev"); //document.getElementById('sad_usa_prevision').value;
         var sad_cond_permanente=capturar_checkbox("cronico"); //document.getElementById('sad_cond_permanente').value;
         tx.executeSql('UPDATE encuesta_salud SET sad_cont_menores=?,sad_cons_drogas=?,sad_cons_drogas_d=?,sad_pat_ges=?,sad_usa_prevision=?,sad_cond_permanente=? WHERE encuesta_id=?'
-        ,[sad_cont_menores,sad_cons_drogas,sad_cons_drogas_d,sad_pat_ges,sad_usa_prevision,sad_cond_permanente,localStorage.getItem('ultimo_registrado')]);
+        ,[sad_cont_menores,sad_cons_drogas,sad_cons_drogas_d,sad_pat_ges,sad_usa_prevision,sad_cond_permanente,localStorage.getItem('actual')]);
         // alert('se guardo: '+encuesta_id);
         });
     //});
@@ -291,7 +291,7 @@ function guardar_encuesta_vivienda(){
         var viv_ben_subsidio=capturar("benef_sub"); //document.getElementById('viv_ben_subsidio').value;
         var viv_otro_subsidio=capturar_checkbox("bonos"); //document.getElementById('viv_otro_subsidio').value;
         tx.executeSql('UPDATE encuesta_vivienda SET viv_tenencia=?,viv_sitio=?,viv_post_subsidio=?,viv_libreta=?,viv_libreta_anio=?,viv_monto_ahorro=?,viv_fam_ocupante=?,viv_num_personas=?,viv_num_dormitorios=?,viv_prov_agua=?,viv_sub_agua=?,viv_ener_electrica=?,viv_elim_excretas=?,viv_reg_hogares=?,viv_tramo_grupo=?,viv_ben_subsidio=?,viv_otro_subsidio=? WHERE encuesta_id=?'
-        ,[viv_tenencia,viv_sitio,viv_post_subsidio,viv_libreta,viv_libreta_anio,viv_monto_ahorro,viv_fam_ocupante,viv_num_personas,viv_num_dormitorios,viv_prov_agua,viv_sub_agua,viv_ener_electrica,viv_elim_excretas,viv_reg_hogares,viv_tramo_grupo,viv_ben_subsidio,viv_otro_subsidio,localStorage.getItem('ultimo_registrado')]);
+        ,[viv_tenencia,viv_sitio,viv_post_subsidio,viv_libreta,viv_libreta_anio,viv_monto_ahorro,viv_fam_ocupante,viv_num_personas,viv_num_dormitorios,viv_prov_agua,viv_sub_agua,viv_ener_electrica,viv_elim_excretas,viv_reg_hogares,viv_tramo_grupo,viv_ben_subsidio,viv_otro_subsidio,localStorage.getItem('actual')]);
         // alert('se guardo: '+encuesta_id);
         }); 
     //}); 
@@ -382,7 +382,7 @@ function crear_encuestas_id(id){
                 crear_encuesta_educacion(id);
                 crear_encuesta_salud(id);
                 crear_encuesta_vivienda(id);
-                localStorage.setItem('ultimo_registrado', id);
+                localStorage.setItem('actual', id);
                }
             }, null);
    
@@ -391,7 +391,7 @@ function crear_encuestas_id(id){
 }
 
 function agregar_familiar(){
-    crear_encuesta_familia(localStorage.getItem('ultimo_registrado')); 
+    crear_encuesta_familia(localStorage.getItem('actual')); 
     //window.close("../Pages/pagina5ymedio.html");
     //window.open("../Pages/pagina6.html");
     //alert(localStorage.getItem('ultimo_registrado'));
@@ -406,7 +406,6 @@ function agregar_datos_familiar(){
     localStorage.setItem('ultimo_familiar',id_familiar);
     });    
 }
-
 
 function id_ultimo(query,callBack){
     var id;
@@ -485,13 +484,11 @@ function capturar_checkbox(checkboxName) {
 }
 
 function setear_checkbox(checkboxName,array) {
-      alert(array.length);
-    var checkboxes = document.getElementsByName(checkboxName);;
-    for (var i=0;i<array.length;i+2)
+    for (var i=0;i<array.length;i++)
     {
-      
-       // checkboxes[array[i]].checked=true;
-    }
+        document.getElementsByName(checkboxName).item(array[i]-1).checked=true;
+        i=i+1;
+    }  
 }
 
 function volver_inicio(){
@@ -499,7 +496,7 @@ function volver_inicio(){
 }
 
 function llenar_encuesta(){
-    localStorage.setItem('actual', 2);
+    //localStorage.setItem('actual', 1);
  
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
@@ -518,7 +515,7 @@ function llenar_encuesta(){
 } 
 
 function llenar_encuesta_trabajador(){
-    localStorage.setItem('actual', 2);
+    //localStorage.setItem('actual', 1);
  
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta_trabajador WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
@@ -542,7 +539,7 @@ function llenar_encuesta_trabajador(){
 } 
 
 function llenar_encuesta_educacion(){
-    localStorage.setItem('actual', 3);
+    //localStorage.setItem('actual', 3);
     var i=0;
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta_educacion WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
@@ -551,7 +548,7 @@ function llenar_encuesta_educacion(){
               document.u_cur.edu_ult_curso.value = results.rows.item(0).edu_ult_curso;
               document.getElementById('edu_anio_egreso').value = results.rows.item(0).edu_anio_egreso;
               document.a_estu.edu_estudiando.value = results.rows.item(0).edu_estudiando; 
-              //setear_checkbox('edu_becas',results.rows.item(0).edu_becas);
+              setear_checkbox('edu_becas[]',results.rows.item(0).edu_becas);
               //document.e_becas.edu_becas.value = results.rows.item(0).edu_becas;
               
                 
@@ -560,7 +557,7 @@ function llenar_encuesta_educacion(){
 } 
 
 function llenar_encuesta_salud(){
-    localStorage.setItem('actual', 2);
+    //localStorage.setItem('actual', 6);
  
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta_salud WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
@@ -569,14 +566,13 @@ function llenar_encuesta_salud(){
               document.getElementById('sad_cons_drogas_d').value = results.rows.item(0).sad_cons_drogas_d;
               document.getElementById('sad_pat_ges').value = results.rows.item(0).sad_pat_ges;
               document.u_prev.usa_prev.value = results.rows.item(0).sad_usa_prevision;
-              //document.getElementById('trab_fec_nacimiento').value = results.rows.item(0).trab_fec_nacimiento;
-                 //alert(results.rows.item(0).enc_run);
+              setear_checkbox('cronico',results.rows.item(0).sad_cond_permanente);
             }, null);         
         });     
 } 
 
 function llenar_encuesta_vivienda(){
-    localStorage.setItem('actual', 2);
+    //localStorage.setItem('actual', 1);
  
     db.transaction(function (tx) {
             tx.executeSql('SELECT * FROM encuesta_vivienda WHERE encuesta_id=?',[localStorage.getItem('actual')], function (tx, results) {            
@@ -596,18 +592,16 @@ function llenar_encuesta_vivienda(){
               document.r_hog.registro_hogares.value = results.rows.item(0).viv_reg_hogares;
               document.e_enc.e_encuesta.value = results.rows.item(0).viv_tramo_grupo;
               document.v_ben.benef_sub.value = results.rows.item(0).viv_ben_subsidio;
-              //document.e_enc.e_encuesta.value = results.rows.item(0).viv_otro_subsidio;
-              //,,,,,,,,,,,,,,,,
-                 //alert(results.rows.item(0).enc_run);
+              setear_checkbox("bonos",results.rows.item(0).viv_otro_subsidio);
             }, null);         
         });     
 } 
 
 function llenar_encuesta_familia(){
-    localStorage.setItem('actual', 1);
+    //localStorage.setItem('actual', 1);
  
     db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_familia_id=?',[localStorage.getItem('actual')], function (tx, results) {            
+            tx.executeSql('SELECT * FROM encuesta_familia WHERE encuesta_familia_id=?',[localStorage.getItem('ultimo_familiar')], function (tx, results) {            
               document.getElementById('fam_run').value = results.rows.item(0).fam_run;
               document.getElementById('fam_dv').value = results.rows.item(0).fam_dv;
               document.getElementById('fam_nombres').value = results.rows.item(0).fam_nombres;
@@ -621,16 +615,16 @@ function llenar_encuesta_familia(){
 } 
 
 function llenar_familia_datos(){
-    localStorage.setItem('actual', 1);
+    //localStorage.setItem('actual', 1);
  
     db.transaction(function (tx) {
-            tx.executeSql('SELECT * FROM familia_datos WHERE encuesta_familia_id=?',[localStorage.getItem('actual')], function (tx, results) {            
+            tx.executeSql('SELECT * FROM familia_datos WHERE encuesta_familia_id=?',[localStorage.getItem('ultimo_familiar')], function (tx, results) {            
               document.f_jefe.fam_jefe_familia.value = results.rows.item(0).fam_jefe_familia;
               document.f_carga.fam_es_carga.value = results.rows.item(0).fam_es_carga;
               document.f_paren.fam_parentezco.value = results.rows.item(0).fam_parentezco;
               document.f_indige.fam_ant_indigena.value = results.rows.item(0).fam_ant_indigena;
               document.f_prof.fam_padre_profesor.value = results.rows.item(0).fam_padre_profesor;
-              //document.f_cron.fam_cond_perm.value = results.rows.item(0).fam_cond_perm;
+              setear_checkbox('fam_cond_perm',results.rows.item(0).fam_cond_perm);
               document.getElementById('fam_ges').value = results.rows.item(0).fam_ges;
               document.f_pre.fam_usa_prevsalud.value = results.rows.item(0).fam_usa_prevsalud;
               document.f_mayor.fam_trabajando.value = results.rows.item(0).fam_trabajando;
@@ -663,9 +657,6 @@ function llenar_familia_datos(){
               document.getElementById('fam_otros_mes1').value = results.rows.item(0).fam_otros_mes1;
               document.getElementById('fam_otros_mes2').value = results.rows.item(0).fam_otros_mes2;
               document.getElementById('fam_otros_mes3').value = results.rows.item(0).fam_otros_mes3;
-              //document.e_enc.e_encuesta.value = results.rows.item(0).viv_otro_subsidio;
-              //,,,,,,,,,,,,,,,,
-                 //alert(results.rows.item(0).enc_run);
             }, null);         
         });     
 } 
