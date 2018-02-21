@@ -133,8 +133,13 @@ function guardar_logs(){
 
 function crear_encuesta(){
     db.transaction(function (tx) {
-    var i=tx.executeSql('INSERT INTO encuesta(filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
+        tx.executeSql('INSERT INTO encuesta(filial_empresa_id,enc_codigo,enc_run,enc_dv,enc_nombres,enc_apellido_p,enc_apellido_m,comuna_id,usuario_id,enc_fecha,enc_estado) VALUES(?,?,?,?,?,?,?,?,?,?,?)'
         ,['','','','','','','','','','','']);
+        tx.executeSql('SELECT * FROM encuesta ',[],function (tx, results) {
+               var len = results.rows.length;               
+               id =results.rows.item(len-1).encuesta_id; 
+               localStorage.setItem('actual', id);
+            }, null);
         
     });         
 }
@@ -375,7 +380,7 @@ function nueva_encuesta(){
    // window.open("Pages/pagina1.html"); 
 }
 function crear_encuestas_id(id){
-     db.transaction(function (tx) { 
+    db.transaction(function (tx) {   
             tx.executeSql('SELECT * FROM encuesta_trabajador WHERE encuesta_id=?',[id],function (tx, results) {
                if( results.rows.length===0){  
                 crear_encuesta_trabajador(id);
@@ -387,7 +392,7 @@ function crear_encuestas_id(id){
             }, null);
    
     //alert(localStorage.getItem('ultimo_registrado'));
-});
+    });
 }
 
 function agregar_familiar(){
