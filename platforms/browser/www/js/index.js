@@ -337,7 +337,7 @@ function guardar_familia_datos(){
         var fam_tipo_est=capturar("fam_tipo_est");  //document.getElementById('fam_tipo_est').value;
         var fam_ult_curso=capturar("fam_ult_curso"); //document.getElementById('fam_ult_curso').value;
         var fam_fin_estudios=document.getElementById('fam_fin_estudios').value;
-        var fam_rindio_psu=document.getElementById('fam_rindio_psu').value;
+        var fam_rindio_psu=capturar("fam_rindio_psu"); //document.getElementById('fam_rindio_psu').value;
         var fam_anio_psu=document.getElementById('fam_anio_psu').value;
         var fam_puntaje_psu=document.getElementById('fam_puntaje_psu').value;
         var fam_ult_promedio=document.getElementById('fam_ult_promedio').value;
@@ -491,8 +491,18 @@ function capturar_checkbox(checkboxName) {
 function setear_checkbox(checkboxName,array) {
     for (var i=0;i<array.length;i++)
     {
-        document.getElementsByName(checkboxName).item(array[i]-1).checked=true;
-        i=i+1;
+        var valido=true, valor='';
+        for(i;i<array.length&&valido===true;i++)
+        {
+            if(array[i]!=='/')
+                valor=valor+array[i].toString();
+            else {
+                valido=false;
+                i--;
+            }
+        }
+        document.getElementsByName(checkboxName).item(parseInt(valor)-1).checked=true;
+        //alert(valor);
     }  
 }
 
@@ -643,7 +653,7 @@ function llenar_familia_datos(){
               document.f_est.fam_tipo_est.value = results.rows.item(0).fam_tipo_est;
               document.f_ult.fam_ult_curso.value = results.rows.item(0).fam_ult_curso;
               document.getElementById('fam_fin_estudios').value = results.rows.item(0).fam_fin_estudios;
-              document.getElementById('fam_rindio_psu').value = results.rows.item(0).fam_rindio_psu;
+              document.f_rpsu.fam_rindio_psu.value = results.rows.item(0).fam_rindio_psu;
               document.getElementById('fam_anio_psu').value = results.rows.item(0).fam_anio_psu;
               document.getElementById('fam_puntaje_psu').value = results.rows.item(0).fam_puntaje_psu;
               document.getElementById('fam_ult_promedio').value = results.rows.item(0).fam_ult_promedio;

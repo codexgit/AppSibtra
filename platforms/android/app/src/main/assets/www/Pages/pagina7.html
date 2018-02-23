@@ -3,6 +3,8 @@
 
    <head>
       <script type="text/javascript" src="../js/index.js"></script>
+       <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="../js/validador_familia_datos.js"></script>
       <script type="text/javascript">
         //borrar_db();
         //crearTablas();
@@ -306,8 +308,12 @@
        </form><br/>
        <div>¿El último año calendario que estudió fue?</div>
        <input type="text" id="fam_fin_estudios" name="fam_fin_estudios" placeholder=""><br/><br/>
-       <div>¿Rindió la PSU?</div>
-       <input type="text" id="fam_rindio_psu" name="fam_rindio_psu" placeholder=""><br/><br/>
+       <form name="f_rpsu">¿Rindió la PSU?<br/>
+           <input type="radio" id="s_psu" name="fam_rindio_psu" value="1">
+           <label for="s_inicio">Si</label>
+           <input type="radio" id="n_psu" name="fam_rindio_psu" value="2">
+           <label for="n_inicio">No</label>
+       </form><br/>
        <div>¿En qué año?</div>
        <input type="text" id="fam_anio_psu" name="fam_anio_psu" placeholder=""><br/><br/>
        <div>¿Qué puntaje obtuvo?</div>
