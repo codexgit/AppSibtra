@@ -1,9 +1,10 @@
 var esCorrecto=true;
 
 $(function () {
-    esCorrecto=true;
+    
    
     $('#edu_anio_egreso').keyup (function () {
+        esCorrecto=true;
         var _this = $('#edu_anio_egreso');
         var _user = $('#edu_anio_egreso').val();
         var numero=/^[0-9]+$/;
@@ -28,3 +29,12 @@ $(function () {
         }
     });
 }); //validar nombres
+
+function esValido(){
+    if(esCorrecto){
+        return true;
+    }    
+    else {
+        return false;
+    }
+}
