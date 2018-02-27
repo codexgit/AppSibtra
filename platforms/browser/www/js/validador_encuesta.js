@@ -1,81 +1,51 @@
 var esCorrecto=true;
 var esCorrecto1=true;
 var esCorrecto2=true;
+var esCorrecto3=true;
+var esCorrecto4=true;
+var regexp = /^\d{7,8}$/;
+
 
 $(function () {
-    esCorrecto=true;
     $('#enc_run').keyup(function () {
+        esCorrecto3=true;
         var _this = $('#enc_run');
         var _user = $('#enc_run').val();
         _this.attr('style', 'background:white');
-        if (_user.indexOf(' ') >= 0) {
-            _this.attr('style', 'background:#FF4A4A');
-            esCorrecto=false;
-        }
 
-        if (_user.indexOf("'") >= 0) {
-            _this.attr('style', 'background:#FF4A4A');
-           esCorrecto=false;
-        }
         
-        if (_user.length > 11) {
+        if (!regexp.test(_user)) {
             _this.attr('style', 'background:#FF4A4A');
-            esCorrecto=false;
+            esCorrecto3=false;
         }
 
         if (_user === '') {
-            _this.attr('style', 'background:#FF4A4A');
-            esCorrecto=false;
+            _this.attr('style', 'background:white');
+            esCorrecto3=true;
         }
     });
-});
+}); //validar run
 
-function validaRut(campo){
-	if ( campo.length === 0 ){ return false; }
-	if ( campo.length < 8 ){ return false; }
+$(function () {
+    $('#enc_dv').keyup(function () {
+        esCorrecto4=true;
+        var _this = $('#enc_dv');
+        var _user = $('#enc_dv').val();
+        var dv =/^[k|K|\d]{1}$/;
+        _this.attr('style', 'background:white');
 
-	campo = campo.replace('-','');
-	campo = campo.replace(/\./g,'');
+        
+        if (!dv.test(_user)) {
+            _this.attr('style', 'background:#FF4A4A');
+            esCorrecto4=false;
+        }
 
-	var suma = 0;
-	var caracteres = "1234567890kK";
-	var contador = 0;    
-	for (var i=0; i < campo.length; i++){
-		u = campo.substring(i, i + 1);
-		if (caracteres.indexOf(u) !== -1)
-		contador ++;
-	}
-	if ( contador===0 ) { return false; }
-	
-	var rut = campo.substring(0,campo.length-1);
-	var drut = campo.substring( campo.length-1 );
-	var dvr = '0';
-	var mul = 2;
-	
-	for (i= rut.length -1 ; i >= 0; i--) {
-		suma = suma + rut.charAt(i) * mul;
-                if (mul === 7) 	mul = 2;
-		        else	mul++;
-	}
-	res = suma % 11;
-	if (res===1)		dvr = 'k';
-                else if (res===0) dvr = '0';
-	else {
-		dvi = 11-res;
-		dvr = dvi + "";
-	}
-	if ( dvr !== drut.toLowerCase() ) { return false; }
-	else { return true; }
-}
-
-
-function isValidRUT(rut) {
-  if (!rut | typeof rut !== 'string') return false;
-
-  var regexp = /^\d{7,8}-[k|K|\d]{1}$/;
-  return regexp.test(rut);
-}
-
+        if (_user === '') {
+            _this.attr('style', 'background:white');
+            esCorrecto4=true;
+        }
+    });
+}); //validar run
 $(function () {
     $('#enc_nombres').keyup(function () {
         esCorrecto=true;
@@ -137,11 +107,43 @@ $(function () {
     });
 }); //validar apellido materno
 
+
+function validarut(ruti,dvi){
+ var rut = ruti+"-"+dvi;
+ 
+ if (rut.length<9)
+     return(false);
+  i1=rut.indexOf("-");
+  dv=rut.substr(i1+1);
+  dv=dv.toUpperCase();
+  nu=rut.substr(0,i1);
+ 
+  cnt=0;
+  suma=0;
+  for (i=nu.length-1; i>=0; i--)
+  {
+    dig=nu.substr(i,1);
+    fc=cnt+2;
+    suma += parseInt(dig)*fc;
+    cnt=(cnt+1) % 6;
+   }
+  dvok=11-(suma%11);
+  if (dvok===11) dvokstr="0";
+  if (dvok===10) dvokstr="K";
+  if ((dvok!==11) && (dvok!==10)) dvokstr=""+dvok;
+ 
+  if (dvokstr===dv){
+     return(true);}
+  else{
+      $('#enc_run').attr('style', 'background:#FF4A4A');
+      $('#enc_dv').attr('style', 'background:#FF4A4A');
+     return(false);
+ }
+}
+
 function esValido(){
-    if(esCorrecto&esCorrecto2&esCorrecto1){
-        return true;
-    }
-    else {
-        return false;
-    }
+    if(esCorrecto&esCorrecto2&esCorrecto1&validarut($('#enc_run').val(),$('#enc_dv').val()))    
+            return true;      
+    else 
+        return false; 
 }  
