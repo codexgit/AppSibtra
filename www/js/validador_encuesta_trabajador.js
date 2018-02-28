@@ -104,7 +104,7 @@ $(function () {
             _this.attr('style', 'background:white');
             esCorrecto4=true;
         }
-        alert(esCorrecto4);
+        
     });
 }); //validar telefono
 

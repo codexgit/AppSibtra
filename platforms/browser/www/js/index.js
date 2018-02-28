@@ -353,7 +353,7 @@ function guardar_familia_datos(){
         var fam_trabajando=capturar("fam_trabajando"); //document.getElementById('fam_trabajando').value;
         var fam_sit_contrato=capturar("fam_sit_contrato"); //document.getElementById('fam_sit_contrato').value;
         var fam_sit_nolaboral=capturar("fam_sit_nolaboral"); //document.getElementById('fam_sit_nolaboral').value;
-        var fam_det_pension=capturar("fam_det_pension"); //document.getElementById('fam_det_pension').value;
+        var fam_det_pension=capturar_checkbox("fam_det_pension"); //document.getElementById('fam_det_pension').value;
         var fam_meses_cesante=document.getElementById('fam_meses_cesante').value;
         var fam_inicio_activ=capturar("fam_inicio_activ"); //document.getElementById('fam_inicio_activ').value;
         var fam_matriculado=capturar("fam_matriculado"); //document.getElementById('fam_matriculado').value;
@@ -672,7 +672,7 @@ function llenar_familia_datos(){
               document.f_mayor.fam_trabajando.value = results.rows.item(0).fam_trabajando;
               document.f_contra.fam_sit_contrato.value = results.rows.item(0).fam_sit_contrato;
               document.f_lab.fam_sit_nolaboral.value = results.rows.item(0).fam_sit_nolaboral;
-              document.f_nlab.fam_det_pension.value = results.rows.item(0).fam_det_pension;
+              setear_checkbox('fam_det_pension',results.rows.item(0).fam_det_pension);//document.f_nlab.fam_det_pension.value = results.rows.item(0).fam_det_pension;
               document.getElementById('fam_meses_cesante').value = results.rows.item(0).fam_meses_cesante;
               document.f_sii.fam_inicio_activ.value = results.rows.item(0).fam_inicio_activ;
               document.f_matri.fam_matriculado.value = results.rows.item(0).fam_matriculado;
